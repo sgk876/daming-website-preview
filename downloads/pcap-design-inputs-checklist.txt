@@ -1,0 +1,40 @@
+DaMing Touch&Display
+Define the Inputs for a Custom PCAP Panel — Requirements Checklist
+Version 1.0 | Prepared 2026-10-17 | English
+Planning template — not a released drawing, specification, test report or quotation.
+Leave unknown items as TO DISCUSS. Do not put credentials in this document.
+
+Company/project: ____________________
+Revision/date: ____________________
+
+1. Start with the mechanical space
+[ ] Panel outline and viewing window
+    Known information / questions: ____________________
+[ ] Available stack thickness and mounting
+    Known information / questions: ____________________
+[ ] LCD model or desired display size
+    Known information / questions: ____________________
+
+2. Clarify interaction and connections
+[ ] Host interface and connector requirements
+    Known information / questions: ____________________
+[ ] FPC exit, routing and cable constraints
+    Known information / questions: ____________________
+[ ] Glove types, moisture scenarios and other known conditions
+    Known information / questions: ____________________
+
+3. Agree the sample review
+[ ] Reviewed cover/sensor/controller configuration
+    Known information / questions: ____________________
+[ ] Drawing revision and prototype configuration
+    Known information / questions: ____________________
+[ ] Checks under agreed operating conditions
+    Known information / questions: ____________________
+
+Open decisions:
+____________________
+Next review and owner:
+____________________
+
+Engineering scope, costs, schedule and validation criteria must be agreed for the project.
+No data is sent by downloading or filling this template.

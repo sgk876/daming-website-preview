@@ -1,0 +1,40 @@
+DaMing Touch&Display
+Start a Custom Touch Project Without Drawings — Requirements Checklist
+Version 1.0 | Prepared 2026-10-17 | English
+Planning template — not a released drawing, specification, test report or quotation.
+Leave unknown items as TO DISCUSS. Do not put credentials in this document.
+
+Company/project: ____________________
+Revision/date: ____________________
+
+1. Describe the job
+[ ] Equipment and intended users
+    Known information / questions: ____________________
+[ ] Control functions and displayed information
+    Known information / questions: ____________________
+[ ] Known priorities and unresolved questions
+    Known information / questions: ____________________
+
+2. Identify what is already fixed
+[ ] Available space or approximate outline
+    Known information / questions: ____________________
+[ ] Existing LCD, host or control-board references
+    Known information / questions: ____________________
+[ ] Photos, sketches or reference products available
+    Known information / questions: ____________________
+
+3. Define the next design work
+[ ] Options to compare and selection criteria
+    Known information / questions: ____________________
+[ ] Agreed drawing scope and responsibilities
+    Known information / questions: ____________________
+[ ] Prototype objectives and confirmation points
+    Known information / questions: ____________________
+
+Open decisions:
+____________________
+Next review and owner:
+____________________
+
+Engineering scope, costs, schedule and validation criteria must be agreed for the project.
+No data is sent by downloading or filling this template.

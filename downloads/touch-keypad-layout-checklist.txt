@@ -1,0 +1,40 @@
+DaMing Touch&Display
+Plan a Capacitive Touch Keypad — Requirements Checklist
+Version 1.0 | Prepared 2026-10-17 | English
+Planning template — not a released drawing, specification, test report or quotation.
+Leave unknown items as TO DISCUSS. Do not put credentials in this document.
+
+Company/project: ____________________
+Revision/date: ____________________
+
+1. Map functions before selecting parts
+[ ] Key functions and intended actions
+    Known information / questions: ____________________
+[ ] Status indicators and display windows
+    Known information / questions: ____________________
+[ ] Approximate dimensions and appearance references
+    Known information / questions: ____________________
+
+2. Coordinate the construction
+[ ] Cover material and printing requirements
+    Known information / questions: ____________________
+[ ] Key layout, windows and lighting requests
+    Known information / questions: ____________________
+[ ] Mounting and main-board interface
+    Known information / questions: ____________________
+
+3. Define real-use checks
+[ ] Moisture and cleaning-use scenarios
+    Known information / questions: ____________________
+[ ] Interaction and unintended activation checks
+    Known information / questions: ____________________
+[ ] Reviewed drawing and sample revision
+    Known information / questions: ____________________
+
+Open decisions:
+____________________
+Next review and owner:
+____________________
+
+Engineering scope, costs, schedule and validation criteria must be agreed for the project.
+No data is sent by downloading or filling this template.

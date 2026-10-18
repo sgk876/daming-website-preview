@@ -1,0 +1,40 @@
+DaMing Touch&Display
+Prepare an Optical Bonding Project Review — Requirements Checklist
+Version 1.0 | Prepared 2026-10-17 | English
+Planning template — not a released drawing, specification, test report or quotation.
+Leave unknown items as TO DISCUSS. Do not put credentials in this document.
+
+Company/project: ____________________
+Revision/date: ____________________
+
+1. Identify the components and goal
+[ ] LCD model and available specifications
+    Known information / questions: ____________________
+[ ] Cover and touch models or dimensions
+    Known information / questions: ____________________
+[ ] Desired optical, mechanical or integration outcome
+    Known information / questions: ____________________
+
+2. Compare integration routes
+[ ] Stack, alignment and thickness requirements
+    Known information / questions: ____________________
+[ ] Incoming part condition and supply responsibilities
+    Known information / questions: ____________________
+[ ] Integration, handling and service constraints
+    Known information / questions: ____________________
+
+3. Agree acceptance before processing
+[ ] Appearance and alignment criteria
+    Known information / questions: ____________________
+[ ] Display/touch checks and validation conditions
+    Known information / questions: ____________________
+[ ] Incoming material and sample review arrangements
+    Known information / questions: ____________________
+
+Open decisions:
+____________________
+Next review and owner:
+____________________
+
+Engineering scope, costs, schedule and validation criteria must be agreed for the project.
+No data is sent by downloading or filling this template.
