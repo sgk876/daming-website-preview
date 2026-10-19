@@ -14,7 +14,7 @@ if(pageApplication){
  document.querySelectorAll('a[href^="/daming-website-preview/products/"]').forEach(a=>{const url=new URL(a.href);url.searchParams.set('application',pageApplication);a.href=url.pathname+url.search;});
 }
 const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const placedProductPhotos={pcap:'/daming-website-preview/assets/materials/I002.png',assembly:'/daming-website-preview/assets/materials/I043.png'};
+const placedProductPhotos={pcap:'/daming-website-preview/assets/original-site/pcap-panel.webp',assembly:'/daming-website-preview/assets/materials/I043.png'};
 const crop=p=>placedProductPhotos[p.id]?`<div class="product-photo-wrap"><img src="${placedProductPhotos[p.id]}" alt="${escapeHTML(p.short)} — source-library product photograph" loading="lazy"></div>`:`<div class="crop" style="--x:${p.image[0]};--y:${p.image[1]};--w:${p.image[2]};--h:${p.image[3]}"><img src="/daming-website-preview/assets/concept.png" alt="Illustrative ${escapeHTML(p.short)}"></div>`;
 if($('#product-grid')&&!$('#product-grid').children.length) $('#product-grid').innerHTML=products.map((p,i)=>`<article class="product-card"><div class="product-media-frame">${crop(p)}</div><div class="product-copy"><span class="product-number">0${i+1} / SOLUTIONS</span><h3>${p.name}</h3><p>${p.description}</p><a class="text-link" href="/daming-website-preview/products/${p.id}.html">Explore solution <span>→</span></a></div></article>`).join('');
 const productDialog=$('#product-dialog');
