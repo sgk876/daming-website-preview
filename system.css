@@ -505,8 +505,8 @@ footer.wrap {
   align-items: flex-start;
   justify-content: space-between;
 }
-footer a.brand, footer a.brand b, footer .text-link, footer .confirmed-contacts a { color: #f4f7fb; }
-footer .text-link:hover, footer .confirmed-contacts a:hover { color: #9eb6ee; }
+footer a.brand, footer a.brand b, footer .text-link, footer .confirmed-contacts a, footer nav a, footer .social-links a { color: #f4f7fb; }
+footer .text-link:hover, footer .confirmed-contacts a:hover, footer nav a:hover, footer .social-links a:hover { color: #9eb6ee; }
 footer p, footer small { color: #b7c2d2; font-size: 14px; line-height: 1.6; }
 footer small { font-size: 12px; }
 footer .brand:not(:has(.brand-icon))::before { filter: brightness(1.6); }
@@ -730,7 +730,8 @@ input:not([type=radio]):not([type=checkbox]), select, textarea {
 }
 
 @media (max-width: 720px) {
-  body:has(dialog[open]) .sticky-inquiry { display: none; }
+  body:has(dialog[open]) .sticky-inquiry,
+  body:has(header nav.open) .sticky-inquiry { display: none; }
   body:has(dialog[open]) { padding-bottom: 0; }
 }
 
