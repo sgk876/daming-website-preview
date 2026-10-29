@@ -312,26 +312,25 @@
         kind: 'family',
         title: 'LCD module range',
         kicker: 'Range, not a SKU',
-        sizeLabel: '0.96–10.1 inch stated',
+        sizeLabel: 'Size set in project review',
         status: 'pending',
         statusLabel: 'Pending confirmation',
         image: R + '/assets/materials/I043.png',
         imageAlt: 'Existing library photograph of a touch display assembly, not a specific LCD module',
         summary: 'The previous LCD page named a size span, bonding methods and display modes. It did not publish individual module drawings, resolutions or interfaces tied to a part number. This entry records the range so it can be replaced by real modules later.',
         paragraphs: [
-          'Company pages also mentioned sizes up to 55 inches and a separate PCAP span of 0.96 to 32 inches. Those ranges do not agree with each other. None of them is a stock list.',
+          'Touch, display and optical bonding are separate routes. The size in scope is agreed for the project. This entry is not a stock list.',
           'When a real LCD module is ready for the library, add it as its own product with a photograph, outline and interface. Do not invent a driver IC or a brightness figure to fill the table.',
           'The photograph is an existing touch-display assembly from this site’s library. It illustrates the integration discussion. It is not the picture of a named LCD SKU.'
         ],
         metrics: [
-          { value: '0.96–10.1″', label: 'LCD span as stated' },
+          { value: 'Per project', label: 'Size agreed in review' },
           { value: 'Frame / full', label: 'Bonding methods named' },
           { value: 'No SKU', label: 'Individual modules unpublished' }
         ],
         specs: [
           { name: 'Catalog status', value: 'Range only — pending confirmation of any single module', pending: true },
-          { name: 'Size span on the LCD page', value: '0.96 inch to 10.1 inch', pending: true },
-          { name: 'Other size claims', value: 'A factory paragraph said 0.96 to 55 inches. A PCAP paragraph said 0.96 to 32 inches. Confirm which span applies.', pending: true },
+          { name: 'Size', value: 'Agreed for the project. Not published here as a stock span.', pending: true },
           { name: 'COG bonding', value: 'Single or multiple ICs, as named', pending: true },
           { name: 'CTP + LCM assembly', value: 'Frame bonding or full bonding, as named', pending: true },
           { name: 'Modes named', value: 'TN, IPS, a-Si, LTPS, IGZO, OLED; monochrome TFT and custom TFT', pending: true },
