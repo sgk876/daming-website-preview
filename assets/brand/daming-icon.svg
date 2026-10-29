@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="282" height="236" viewBox="0 0 282 236" role="img" aria-labelledby="title"><title id="title">icon / web_blue</title>
+<!-- DaMing existing-logo refinement. Hand-drawn vector reconstruction from supplied raster. -->
+<!-- Text is outlined from Source Han Sans SC Medium and Inter Medium. No embedded raster. -->
+<g id="icon" transform="translate(24.00000 24.00000) scale(1.000000)"><!-- Original rounded tile and white rim -->
+<rect x="58" y="0" width="176" height="188" rx="30" fill="#FFFFFF"/>
+<rect x="68" y="10" width="156" height="168" rx="21" fill="#0A59F7"/>
+<!-- Original tapered sweep and crescent -->
+<path d="M0 103C49 58 99 21 183 28C108 44 66 100 117 132C149 151 201 130 217 85C207 138 164 162 115 153C54 142 60 88 139 39C79 47 33 75 0 103Z" fill="#FFFFFF" stroke="#0A59F7" stroke-width="0.65" stroke-linejoin="round"/>
+<!-- Original central custom glyph retained; no DM / DMO substitution -->
+<path d="M127 61H155V64H151Q146 64 146 69V90C158 84 170 73 179 61V111Q179 117 187 118V122H157V118H161Q166 118 166 113V94H146V113Q146 118 154 118V122H126V118Q134 118 134 112V71Q134 64 127 64Z" fill="#FFFFFF"/></g></svg>

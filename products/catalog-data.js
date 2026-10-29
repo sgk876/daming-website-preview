@@ -11,7 +11,7 @@
  * Asset files belong in /assets/catalog/ and should be real photographs, not stock.
  */
 (function (global) {
-  const R = '/daming-website-preview';
+  const R = '';
   const glove = { href: R + '/resources/pcap-glove-wet-touch.html', label: 'Glove and wet-touch review' };
   const inputs = { href: R + '/resources/pcap-design-inputs.html', label: 'PCAP design inputs' };
   const support = { href: R + '/design-support.html', label: 'Start without a finished drawing' };
