@@ -2,7 +2,7 @@
 (function () {
   const data = window.DAMING_CATALOG;
   if (!data) return;
-  const R = '/daming-website-preview';
+  const R = '';
 
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
