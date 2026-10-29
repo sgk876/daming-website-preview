@@ -23,6 +23,19 @@
     return `<div class="metric-strip" role="list">${cells}</div>`;
   }
 
+  function chipStrip(product) {
+    const chips = product.chips || [];
+    if (!chips.length) return '';
+    const html = chips.map((item) => {
+      const pending = !!item.pending;
+      const value = pending && !/pending confirmation/i.test(item.value)
+        ? `${item.value} — pending confirmation`
+        : item.value;
+      return `<span class="spec-chip${pending ? ' is-pending' : ''}"><b>${esc(item.name)}</b> ${esc(value)}</span>`;
+    }).join('');
+    return `<span class="spec-chips">${html}</span>`;
+  }
+
   function tile(product) {
     const href = `${R}/products/detail.html?id=${encodeURIComponent(product.id)}`;
     const pending = product.status === 'pending' ? '<em>Pending confirmation</em>' : '<em>Reference design</em>';
@@ -30,6 +43,7 @@
       <span class="range-photo"><img src="${esc(product.image)}" alt="${esc(product.imageAlt)}" loading="lazy"></span>
       <span class="range-name">${esc(product.title)}</span>
       ${pending}
+      ${chipStrip(product)}
       <span class="range-cta">Configure / Inquire</span>
     </a>`;
   }
@@ -61,26 +75,87 @@
     root.innerHTML = items.map(tile).join('');
   }
 
+  const sizeBands = [
+    ['', 'All size bands'],
+    ['under-10', 'Under 10″'],
+    ['10-15', '10–15″'],
+    ['15-plus', '15″ and above'],
+    ['range', 'Range, not one size']
+  ];
+  const routes = [
+    ['', 'All routes'],
+    ['evaluate', 'Evaluate — reference drawing on file'],
+    ['extend', 'Extend — named range, not a part number'],
+    ['define', 'Define — photograph or title only']
+  ];
+  const applications = [
+    ['', 'All applications'],
+    ['unassigned', 'Not assigned on this record'],
+    ['industrial', 'Industrial control (previous page, pending)'],
+    ['hvac', 'HVAC and water heating'],
+    ['medical', 'Medical devices'],
+    ['terminals', 'Smart, AI and robot terminals']
+  ];
+
+  function selectFilter(name, options, selected) {
+    const choices = options.map(([value, label]) => (
+      `<option value="${esc(value)}"${value === selected ? ' selected' : ''}>${esc(label)}</option>`
+    )).join('');
+    return `<label>${esc(name)}<select data-filter="${esc(name)}">${choices}</select></label>`;
+  }
+
   function renderCatalog(root) {
     const tabs = root.querySelector('[data-catalog-tabs]');
     const grid = root.querySelector('[data-catalog-grid]');
+    const filters = root.querySelector('[data-catalog-filters]');
+    const note = root.querySelector('[data-catalog-filter-note]');
     const lede = document.querySelector('[data-catalog-lede]');
     if (!tabs || !grid) return;
-    const initial = new URLSearchParams(location.search).get('category')
+    const params = new URLSearchParams(location.search);
+    const initial = params.get('category')
       || (location.hash || '').replace('#', '')
       || data.categories[0].id;
+    let currentCategory = initial;
+
+    const readFilters = () => {
+      if (!filters) return { sizeBand: '', route: '', application: '' };
+      return {
+        sizeBand: filters.querySelector('[data-filter="Size band"]')?.value || '',
+        route: filters.querySelector('[data-filter="Route"]')?.value || '',
+        application: filters.querySelector('[data-filter="Application"]')?.value || ''
+      };
+    };
 
     const paint = (categoryId) => {
       const category = data.categories.find((item) => item.id === categoryId) || data.categories[0];
+      currentCategory = category.id;
       tabs.querySelectorAll('button').forEach((button) => {
         const on = button.getAttribute('data-category') === category.id;
         button.setAttribute('aria-pressed', String(on));
       });
       if (lede) lede.textContent = category.lede;
-      const items = data.products.filter((item) => item.category === category.id);
-      grid.innerHTML = items.map(tile).join('') || '<p class="catalog-empty">No modules in this family yet.</p>';
+      const selected = readFilters();
+      const items = data.products.filter((item) => item.category === category.id).filter((item) => (
+        (!selected.sizeBand || item.sizeBand === selected.sizeBand)
+        && (!selected.route || item.route === selected.route)
+        && (!selected.application || item.application === selected.application)
+      ));
+      grid.innerHTML = items.map(tile).join('') || '<p class="catalog-empty">No module in this family matches those filters. Unstated specifications stay pending confirmation.</p>';
+      if (note) {
+        if (selected.application === 'industrial') {
+          note.textContent = 'Industrial control is a previous-page description and is pending confirmation. It is not an application approval.';
+        } else if (selected.application && !items.length) {
+          note.textContent = 'No catalog record is tagged to this application. Fit is confirmed on the project, not assumed from a photograph.';
+        } else {
+          note.textContent = 'Filters use size band, route, and application only. There is no price and no cart. A dashed chip is pending confirmation.';
+        }
+      }
       const url = new URL(location.href);
       url.searchParams.set('category', category.id);
+      ['size', 'route', 'application'].forEach((key) => url.searchParams.delete(key));
+      if (selected.sizeBand) url.searchParams.set('size', selected.sizeBand);
+      if (selected.route) url.searchParams.set('route', selected.route);
+      if (selected.application) url.searchParams.set('application', selected.application);
       history.replaceState(null, '', url.pathname + url.search);
     };
 
@@ -91,6 +166,14 @@
       const button = event.target.closest('button[data-category]');
       if (button) paint(button.getAttribute('data-category'));
     });
+    if (filters) {
+      filters.innerHTML = [
+        selectFilter('Size band', sizeBands, params.get('size') || ''),
+        selectFilter('Route', routes, params.get('route') || ''),
+        selectFilter('Application', applications, params.get('application') || '')
+      ].join('');
+      filters.addEventListener('change', () => paint(currentCategory));
+    }
     paint(initial);
   }
 
@@ -123,6 +206,7 @@
             <h1>${esc(product.title)}</h1>
             <p class="intro">${esc(product.summary)}</p>
             <p class="status-line">${product.status === 'pending' ? 'Pending confirmation — not a released drawing.' : 'Reference design — confirm the drawing before production.'}</p>
+            ${chipStrip(product)}
             <div class="actions">
               <button class="button" type="button" data-start="guided" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">Configure this module</button>
               <button class="button secondary" type="button" data-start="specs" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">I have a drawing</button>
@@ -156,9 +240,13 @@
           <h2>Tell us what you are building.</h2>
           <p>Share the equipment, the mechanical window and what you already know. We reply with the open decisions, not a shopping-cart price.</p>
         </div>
-        <div class="inquiry-actions">
-          <button class="button" type="button" data-start="guided" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">Inquire about this module</button>
-          <a class="text-link" href="${R}/contact.html">Contact Chloe or Si Guokun <span>→</span></a>
+        <div>
+          <div data-inquiry-checklist></div>
+          <div class="inquiry-actions">
+            <button class="button" type="button" data-start="guided" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">I need help choosing</button>
+            <button class="button secondary" type="button" data-start="specs" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">I have specifications</button>
+          </div>
+          <p class="prototype-note">Submitting opens FormSubmit for delivery to sgk@touch-displays.com. Security verification or first-time recipient activation may be required.</p>
         </div>
       </div></section>
     </article>`;
