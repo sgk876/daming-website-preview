@@ -30,7 +30,7 @@
       <span class="range-photo"><img src="${esc(product.image)}" alt="${esc(product.imageAlt)}" loading="lazy"></span>
       <span class="range-name">${esc(product.title)}</span>
       ${pending}
-      <span class="range-cta">Inquire</span>
+      <span class="range-cta">Configure / Inquire</span>
     </a>`;
   }
 
@@ -38,16 +38,16 @@
     const featured = data.products.filter((item) => item.featured);
     root.innerHTML = featured.map((product, index) => {
       const href = `${R}/products/detail.html?id=${encodeURIComponent(product.id)}`;
-      const flip = index % 2 ? ' spotlight-flip' : '';
-      return `<article class="spotlight${flip}">
+      const eager = index === 0 ? ' fetchpriority="high"' : '';
+      return `<article class="spotlight">
         <div class="spotlight-copy">
           <p class="eyebrow">${esc(product.kicker)}</p>
           <h2>${esc(product.title)}</h2>
           <p>${esc(product.summary)}</p>
-          <a class="text-link" href="${href}">Read the reference <span>→</span></a>
+          <a class="text-link" href="${href}">Configure / Inquire <span>→</span></a>
         </div>
         <figure class="spotlight-figure">
-          <img src="${esc(product.image)}" alt="${esc(product.imageAlt)}">
+          <img src="${esc(product.image)}" alt="${esc(product.imageAlt)}"${eager}>
           <figcaption>${esc(product.sizeLabel)} · photograph from the previous product page</figcaption>
         </figure>
         ${metricStrip(product)}
@@ -64,7 +64,7 @@
   function renderCatalog(root) {
     const tabs = root.querySelector('[data-catalog-tabs]');
     const grid = root.querySelector('[data-catalog-grid]');
-    const lede = root.querySelector('[data-catalog-lede]');
+    const lede = document.querySelector('[data-catalog-lede]');
     if (!tabs || !grid) return;
     const initial = new URLSearchParams(location.search).get('category')
       || (location.hash || '').replace('#', '')
@@ -127,9 +127,9 @@
               <button class="button" type="button" data-start="guided" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">Configure this module</button>
               <button class="button secondary" type="button" data-start="specs" data-selected="${selected}" data-catalog-ref="${esc(product.title)}">I have a drawing</button>
             </div>
-            ${metricStrip(product)}
           </div>
         </div>
+        ${metricStrip(product)}
       </div></header>
       <section class="wrap module-story">
         ${product.paragraphs.map((paragraph) => `<p>${esc(paragraph)}</p>`).join('')}
