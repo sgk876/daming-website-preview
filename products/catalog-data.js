@@ -3,6 +3,9 @@
  *
  * Add a product by appending one object to DAMING_CATALOG.products.
  * Required: id, category, title, summary, metrics (up to 3), specs, status.
+ * Chip and filter fields are attached after the product list. They may only
+ * repeat a figure already in that product. Unknown chip values stay
+ * "Pending confirmation". Do not invent a construction, interface, or drawing.
  * Then open products/catalog.html and products/detail.html?id=YOUR-ID.
  * Use status "reference" only when a drawing or measured sample is in hand.
  * Use status "pending" when a figure comes from the previous website and is not a released drawing.
@@ -348,4 +351,108 @@
       }
     ]
   };
+
+  const pending = (name, value) => ({ name, value, pending: true });
+  const chip = (name, value) => ({ name, value, pending: false });
+  const noDrawing = chip('Drawing', 'No formal drawing');
+  const openConstruction = pending('Construction', 'Pending confirmation');
+  const openInterface = pending('Interface', 'Pending confirmation');
+
+  const notes = {
+    'pcap-80': {
+      sizeBand: 'under-10',
+      route: 'evaluate',
+      application: 'unassigned',
+      chips: [
+        chip('Size', '8.0″'),
+        chip('Construction', 'G+G'),
+        chip('Interface', 'USB on the sample'),
+        chip('Drawing', 'Reference drawing')
+      ]
+    },
+    'pcap-105': {
+      sizeBand: '10-15',
+      route: 'evaluate',
+      application: 'unassigned',
+      chips: [
+        chip('Size', '10.5″'),
+        chip('Construction', 'G+G'),
+        chip('Interface', 'FPC tail; USB on the reference board'),
+        chip('Drawing', 'Reference drawing')
+      ]
+    },
+    'pcap-134': {
+      sizeBand: '10-15',
+      route: 'define',
+      application: 'industrial',
+      applicationPending: true,
+      chips: [
+        pending('Size', '13.4″ on the page title'),
+        openConstruction,
+        openInterface,
+        noDrawing
+      ]
+    },
+    'pcap-156': {
+      sizeBand: '15-plus',
+      route: 'define',
+      application: 'industrial',
+      applicationPending: true,
+      chips: [
+        pending('Size', '15.6″ on the page title'),
+        pending('Construction', 'G+G named on the unfinished sheet'),
+        openInterface,
+        noDrawing
+      ]
+    },
+    'pcap-160': {
+      sizeBand: '15-plus',
+      route: 'define',
+      application: 'industrial',
+      applicationPending: true,
+      chips: [pending('Size', '16.0″ on the page title'), openConstruction, openInterface, noDrawing]
+    },
+    'pcap-173': {
+      sizeBand: '15-plus',
+      route: 'define',
+      application: 'industrial',
+      applicationPending: true,
+      chips: [pending('Size', '17.3″ on the page title'), openConstruction, openInterface, noDrawing]
+    },
+    'pcap-185': {
+      sizeBand: '15-plus',
+      route: 'define',
+      application: 'industrial',
+      applicationPending: true,
+      chips: [pending('Size', '18.5″ on the page title'), openConstruction, openInterface, noDrawing]
+    },
+    'pcap-190': {
+      sizeBand: '15-plus',
+      route: 'define',
+      application: 'industrial',
+      applicationPending: true,
+      chips: [pending('Size', '19.0″ on the page title'), openConstruction, openInterface, noDrawing]
+    },
+    'lcd-range': {
+      sizeBand: 'range',
+      route: 'extend',
+      application: 'unassigned',
+      chips: [
+        pending('Size', '0.96–10.1″ stated on the LCD page'),
+        openConstruction,
+        openInterface,
+        noDrawing
+      ]
+    }
+  };
+
+  global.DAMING_CATALOG.products.forEach((product) => {
+    const note = notes[product.id];
+    if (!note) return;
+    product.sizeBand = note.sizeBand;
+    product.route = note.route;
+    product.application = note.application;
+    product.applicationPending = !!note.applicationPending;
+    product.chips = note.chips;
+  });
 })(window);

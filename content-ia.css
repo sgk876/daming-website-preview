@@ -1,0 +1,130 @@
+/* P0 content/IA only. Does not set type, accent, or other visual tokens. */
+
+.spec-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.spec-chip {
+  display: inline-flex;
+  gap: 6px;
+  align-items: baseline;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper, #fff);
+  color: var(--muted);
+  padding: 3px 7px;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.spec-chip b {
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 11px;
+  letter-spacing: 0;
+}
+
+.spec-chip.is-pending { border-style: dashed; }
+
+.catalog-filters {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px 16px;
+  margin: 8px 0 18px;
+}
+
+.catalog-filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.catalog-filters select {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper, #fff);
+  color: var(--ink);
+  padding: 8px 10px;
+  border-radius: 0;
+}
+
+.catalog-filter-note { margin-top: 0; }
+
+.inquiry-checklist {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.inquiry-checklist li {
+  padding: 8px 0;
+  border-top: 1px solid var(--line);
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-soft, var(--ink));
+}
+
+.constraint-list {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+}
+
+.constraint-list li {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  color: var(--ink-soft, var(--ink));
+}
+
+.constraint-groups {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 18px;
+}
+
+.constraint-groups article {
+  border-top: 2px solid var(--line);
+  padding-top: 14px;
+}
+
+.case-states {
+  display: grid;
+  gap: 8px;
+  margin: 0 0 16px;
+}
+
+.case-state {
+  margin: 0;
+  border: 1px solid var(--line);
+  padding: 8px 10px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--muted);
+}
+
+.case-state b {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.case-state.is-current { border-color: var(--ink); }
+
+.case-state.is-unused b { font-weight: 500; }
+
+@media (max-width: 800px) {
+  .catalog-filters,
+  .constraint-groups { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 721px) {
+  .application-hub-grid,
+  .application-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .application-related { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
